@@ -37,17 +37,15 @@ class CashRegister:
         })
         
         # print(f"Added {quantity} x {item} at ${price:.2f} each. Total is now ${self.total:.2f}")
-
     def apply_discount(self):
-        #Apply discount to last transaction, or print error if no transactions.
-        if not self.previous_transactions:
+        if self.total == 0:
             print("There is no discount to apply.")
-            return  # Stop here if no transactions
+            return
 
-        # Remove last transaction
-        self.previous_transactions.pop()
+        if self.discount == 0:
+            print("There is no discount to apply.")
+            return
 
-        # Apply discount
         discount_amount = self.total * (self.discount / 100)
         self.total -= discount_amount
         print(f"After the discount, the total comes to ${int(self.total)}.")
